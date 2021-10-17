@@ -1,0 +1,418 @@
+\documentclass[a4]{article}
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%
+% Packages/Macros %
+%%%%%%%%%%%%%%%%%%%
+\usepackage{mathrsfs}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{} 
+\rfoot{\normalsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\usepackage{amssymb,latexsym}  % Standard packages
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{MnSymbol}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsthm}
+\usepackage{indentfirst}
+\usepackage{graphicx}%,vmargin}
+\usepackage{graphicx}
+\graphicspath{{pictures/}} 
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{color,colortbl}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{hhline}
+
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{1,1,1}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+\usepackage{url}
+\urldef\myurl\url{foo%.com}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{breakurl}
+\Urlmuskip=0mu plus 1mu
+
+
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}% -- настройка картинок
+
+\usepackage{epigraph} %%% to make inspirational quotes.
+\usepackage[all]{xy} %for XyPic'a
+\usepackage{color} 
+\usepackage{amscd} %для коммутативных диграмм
+%\usepackage[colorlinks,urlcolor=red]{hyperref}
+
+%\renewcommand{\baselinestretch}{1.5}
+%\sloppy
+%\usepackage{listings}
+%\lstset{numbers=left}
+%\setmarginsrb{2cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
+
+
+\newtheorem{Lemma}{Лемма}[section]
+\newtheorem{Proposition}{Предложение}[section]
+\newtheorem{Theorem}{Теорема}[section]
+\newtheorem{Corollary}{Следствие}[section]
+\newtheorem{Remark}{Замечание}[section]
+\newtheorem{Definition}{Определение}[section]
+\newtheorem{Designations}{Обозначение}[section]
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% 
+%Подготовка оглавления% 
+%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage[titles]{tocloft}
+\renewcommand{\cftdotsep}{2} %частота точек
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \LARGE\bfseries} 
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+\renewcommand{\cftbeforetoctitleskip}{-1em} 
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-0.5em}} 
+%\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} } 
+%\renewcommand{\cftsecfont}{\hspace{1pt}} 
+\renewcommand{\cftsubsecfont}{\hspace{1pt}} 
+%\renewcommand{\cftbeforechapskip}{1em} 
+\renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
+\setcounter{tocdepth}{5} 
+\renewcommand{\listoffigures}{\begingroup %добавляем номер в список иллюстраций
+\tocsection
+\tocfile{\listfigurename}{lof}
+\endgroup}
+\renewcommand{\listoftables}{\begingroup %добавляем номер в список иллюстраций
+\tocsection
+\tocfile{\listtablename}{lot}
+\endgroup}
+
+
+%\renewcommand{\thelikesection}{(\roman{likesection})}
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{0.7in}
+\textheight=630pt
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\topmargin}{-0.4in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%Переопределение chapter%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\empline}{\mbox{}\newline} 
+\newcommand{\likechapterheading}[1]{ 
+\begin{center} 
+\textbf{\MakeUppercase{#1}} 
+\end{center} 
+\empline} 
+
+%%%%%%%Запиливание переопределённого chapter в оглавление%%%%%% 
+\makeatletter 
+\renewcommand{\@dotsep}{2} 
+\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}} 
+\makeatother 
+\newcommand{\likechapter}[1]{ 
+\likechapterheading{#1} 
+\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}} 
+
+
+
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{000000} % цвет ссылок
+\definecolor{urlcolor}{HTML}{AA1622} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%главы -- section*%%%%%%
+%%%%section -- subsection%%%%
+%subsection -- subsubsection%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \newstr {\medskip \par \noindent} 
+\begin{document}
+
+
+
+\section*{Задача 1}
+\label{sec:orgb62fe60}
+\subsection*{Постановка}
+\label{sec:org37954e9}
+В стране Турляндии есть \(N\) городов и \(M\) двусторонних дорог, каждая из которых соединяет ровно два города. Между двумя городами может быть более одной дороги. Дорога
+может соединять город с самим собой, образуя петлю.
+Все дороги находятся в плачевном состоянии. Для ремонта дороги необходимо \(g_i\) техники и \(s_i\) рабочей силы. Единица техники стоит \(G\), а единица рабочий силы - \(S\).
+Необходимо найти минимальное количество денег необходимое для починок дорог так,
+чтобы между каждой парой городов существовал хоты бы один безопасный путь.
+
+\subsection*{Входные данные}
+\label{sec:orgc51833b}
+Первая строка входных данных содержит два целых числа \(N\) и \(M\) — количество городов
+и количество дорог. Вторая строка содержит числа \(G\) и \(S\). Последующие \(M\) строк содержат
+информацию о дорогах и то, что необходимо для её ремонта. Описание состоит из 4 чисел:
+\(x_i\) - номер первого города, \(y_i\) - номер второго города, \(a_i\) - количество необходимой техники,
+\(b_i\) - количество рабочей силы.
+
+\subsection*{Выходные данные}
+\label{sec:org91cd1c2}
+Единственная строка должна содержать минимальное цену, которую нужно потратить
+королю на покупку золотых и серебряных монет, чтобы достичь своей цели. Выведите -1,
+в случае, если это невозможно.
+
+\subsection*{Пример}
+\label{sec:org2aeecb4}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+3 3
+
+2 1
+
+1 2 10 15
+
+1 2 4 20
+
+1 3 5 1
+&
+30
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\pagebreak
+\section*{Задача 2}
+\label{sec:orgef181bd}
+\subsection*{Постановка}
+\label{sec:orgad8a20e}
+Майк соединяет веснушки на спине отца пока он спит. Веснушки расположены в различных местах. Помогите Майку соединить точки так, чтобы минимизировать количество
+используемых чернил. Майк соединяет точки, рисуя прямые линии между парами. Он
+может поднимать ручку передвигая её по уже нарисованной линии, что не тратит чернила. Когда Майк закончил, должна быть последовательность соединенных линий от любой
+веснушки до любой другой веснушки.
+\subsection*{Входные данные}
+\label{sec:orgc51833b}
+В первой строке записано \(n\) - количество веснушек. За каждой веснушкой следует линия. Каждая следующая строка содержит два действительных числа, указывающих координаты \((x, y)\) веснушки.
+
+\subsection*{Выходные данные}
+\label{sec:orgf9da829}
+Необходимо вывести минимальную общую длину линий чернил с двумя знаками после запятой.
+\subsection*{Пример}
+\label{sec:orgd7d348d}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+3
+
+1.0 1.0
+
+2.0 2.0
+
+2.0 4.0
+&
+3.41
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\pagebreak
+\section*{Задача 3}
+\label{sec:org570b899}
+\subsection*{Постановка}
+\label{sec:orga2b5149}
+Рассмотрим задачу выбора набора \(T\) высокоскоростных линий для соединения \(N\) компьютерных узлов из совокупности \(M\) высокоскоростных линий, каждая из которых соединяет пару компьютерных узлов.
+Каждая высокоскоростная линия имеет заданную ежемесячную стоимость, и необходимо свести к минимуму общую стоимость подключения \(N\) компьютерных сайтов, где общая
+стоимость - это сумма стоимости каждой линии, включенной в набор \(T\). Рассмотрим далее,
+что эта проблема ранее было решено для набора из \(N\) компьютерных узлов и \(M\) высокоскоростных линий, но недавно стало доступно несколько \(K\) новых высокоскоростных линий.
+Ваша цель - вычислить новый набор \(T\), который может дать более низкую стоимость,
+чем исходный набор \(T\), из-за дополнительных K новых высокоскоростных линий и когда
+доступно \(M + K\) высокоскоростных линий
+\label{sec:orged795e8}
+
+\subsection*{Входные данные}
+\label{sec:orgeb4908d}
+Данные подаются следующим образом:\
+\begin{itemize}
+    \item Количество компьютерных сайтов \(N\).
+    \item Максимумом по числам, стоящим на четных позициях.
+    \item Множество \(T\) предварительно выбранных высокоскоростных линий, состоящих из \(N - 1\) линий, каждая из которых описывает высокоскоростную линию и содержит номера двух компьютерных сайтов, которые линия соединяет, и ежемесячная стоимость использования этой линии.
+    \item Строка, содержащая количество \(K\) новых дополнительных линий.
+    \item \(K\) строк, каждая из которых описывает новую высокоскоростную линию и содержит номера двух компьютеров. к которым линия подключается, и ежемесячная стоимость использования этой линии.
+    \item Строка, содержащая количество \(M\) изначально доступных высокоскоростных линий.
+    \item \(M\) линий, каждая из которых описывает одну из изначально доступных высокоскоростных линий и содержит номера двух компьютерных сайтов, к которым линия подключает, а также ежемесячную стоимость использования этой линии.
+\end{itemize}
+\subsection*{Выходные данные}
+\label{sec:orged795e8}
+Выход должен содержать одну строку, содержащую исходную стоимость соединения
+\(N\) компьютерных узлов с \(M\) высокоскоростными линиями, а другую строку - новую стоимость соединения \(N\) компьютерных узлов с \(M + K\) высокоскоростными линиями. Необходимо вывести минимальную общую длину чернил с двумя знаками после запятой.
+\subsection*{Пример}
+\label{sec:org6a26c04}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+5
+
+1 2 5
+
+1 3 5
+
+1 4 5
+
+1 5 5
+
+1
+
+2 3 2
+
+6
+
+1 2 5
+
+1 3 5
+
+1 4 5
+
+1 5 5
+
+3 4 8
+
+4 5 
+&
+20
+
+17
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\pagebreak
+\section*{Задача 4}
+\label{sec:orgb1f46a6}
+\subsection*{Постановка}
+\label{sec:orge854c50}
+После встречи с инвесторами, стартап по созданию платформы для умного сжатия данных получил контракт на первый этап финансирования. Для увеличения эффективности выполнеиня работы инвесторы настояли на изменении организационной структуры стартапа. На момент подписания договора в стартапе работало \(n\) человек. Теперь в стартапе необходимо построить иерархию отношений. То есть у каждого работника, кроме исполнительного директора, должен быть ровно один тимлид.
+Есть \(m\) заявлений о том, что работник \(a_i\) готов быть начальником работника \(b_i\) за доплату
+\(c_i\) Для каждого заявления известно, что квалификация подающего заявление больше, чем
+квалификация того человека, чьим начальником он готов стать.
+Помогите определить минимальную стоимость создания иерархии, либо выяснить, что
+это невозможно
+\subsection*{Входные данные}
+\label{sec:orge854c50}
+В первой строке содержится целое число \(n\) — число сотрудников стартапа. В следующей строке содержится n чисел \(q_j\) — значения квалификации сотрудников. Далее идет
+количество поданных заявлений \(m\). Следующие \(m\) строк содержат заявления, каждое из
+которых задается тремя числами: \(a_i\)
+, \(b_i\) и \(c_i\).
+
+\subsection*{Выходные данные}
+\label{sec:org1ab7414}
+Выведите минимальную стоимость создания иерархии или -1, если создать иерархию
+невозможно.
+
+\subsection*{Пример 1}
+\label{sec:org25482f8}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+4
+
+7 2 3 1
+
+4
+
+1 2 5
+
+2 4 1
+
+3 4 1
+
+1 3 5
+&
+11
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+Входные данные & Выходные данные \\ \hline
+4
+
+7 2 3 1
+
+4
+
+1 2 5
+
+2 4 1
+
+3 4 1
+
+1 3 5
+&
+-1
+\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\pagebreak
+\end{document}
